@@ -60,7 +60,9 @@ io.on('connection', (socket) => {
  * @returns {Promise<Model[]>}
  */
 async function getMostRecentMessages() {
-  return await Message.find().sort({ _id: -1 }).limit(10);
+  return await Message.find().sort({ createdAt: -1 }).limit(10);
+  // sort -1 means descending order.
+  // older message will be on top
 }
 
 app.use((req, res, next) => {
