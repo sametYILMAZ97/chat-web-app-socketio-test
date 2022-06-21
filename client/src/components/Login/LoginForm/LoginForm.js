@@ -1,24 +1,24 @@
-import React, { useRef, useState } from "react";
-import { TextField, Fab, Button } from "@material-ui/core";
-import AddIcon from "@material-ui/icons/Add";
-import Loader from "react-loader-spinner";
-import axios from "axios";
+import React, { useRef, useState } from 'react';
+import { TextField, Fab, Button } from '@material-ui/core';
+import AddIcon from '@material-ui/icons/Add';
+import Loader from 'react-loader-spinner';
+import axios from 'axios';
 
 const LoginForm = ({ setUserDataForChat }) => {
   const [loading, setLoading] = useState(false);
-  const userNameInput = useRef("");
-  const imageInput = useRef("");
+  const userNameInput = useRef('');
+  const imageInput = useRef('');
 
   const enterChatClick = () => {
     setUserName(userNameInput.current.value, imageInput.current.files[0]);
   };
 
   const sendData = async (options) => {
-    return await axios.post("http://localhost:5002/api/upload", options);
+    return await axios.post('http://localhost:5002/api/upload', options);
   };
 
   const setUserName = (userName, imageFile) => {
-    if (userName === "") {
+    if (userName === '') {
       return false;
     }
     if (imageFile === undefined) {
@@ -28,7 +28,7 @@ const LoginForm = ({ setUserDataForChat }) => {
     } else {
       setLoading(true);
       const data = new FormData();
-      data.append("avatar", imageFile);
+      data.append('avatar', imageFile);
       try {
         sendData(data)
           .then((response) => {
@@ -57,7 +57,7 @@ const LoginForm = ({ setUserDataForChat }) => {
         minRows="1"
         inputRef={userNameInput}
         onKeyDown={(event) => {
-          if (event.key === "Enter") {
+          if (event.key === 'Enter') {
             event.preventDefault();
             setUserName(event.target.value, imageInput.current.files[0]);
           }
@@ -65,14 +65,20 @@ const LoginForm = ({ setUserDataForChat }) => {
       />
       <label>
         <input
-          style={{ display: "none" }}
+          style={{ display: 'none' }}
           id="upload-avatar"
           name="upload-avatar"
           ref={imageInput}
           type="file"
           accept="image/x-png,image/gif,image/jpeg"
         />
-        <Fab color="secondary" size="small" component="span" aria-label="add" variant="extended">
+        <Fab
+          color="secondary"
+          size="small"
+          component="span"
+          aria-label="add"
+          variant="extended"
+        >
           <AddIcon /> Upload avatar
         </Fab>
         <br />

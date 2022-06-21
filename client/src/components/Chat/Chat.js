@@ -1,7 +1,7 @@
-import React from "react";
-import MessageBox from "./MessageBox/MessageBox";
-import Messages from "./Messages/Messages";
-import useChat from "./useChat";
+import React from 'react';
+import MessageBox from './MessageBox/MessageBox';
+import Messages from './Messages/Messages';
+import useChat from './useChat';
 
 const Chat = (currentUserData) => {
   //useChat calls to our custom hook
